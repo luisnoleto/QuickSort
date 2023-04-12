@@ -1,44 +1,53 @@
-package laboratorioDeEstudo;
 
-public class laboratorioDeEstudo {
+ package laboratorioDeEstudo;
 
-    public static void main(String[] args) {
-
-        String[] array = {"Maça", "Laranja", "Carambola", "Jabuticaba", "Abacaxi", "Melancia"};
-
-        quickSort(array, 0, array.length - 1);
-
-        for (String s : array) {
-            System.out.print(s + " ");
-        }
-    }
-
-    private static void quickSort(String[] array, int inicio, int fim) {
-        if (fim <= inicio) return;
-
-        int pivot = parteArray(array, inicio, fim);
-        quickSort(array, inicio, pivot - 1);
-        quickSort(array, pivot + 1, fim);
-    }
-
-    private static int parteArray(String[] array, int inicio, int fim) {
-        String pivot = array[fim];
-        int i = inicio - 1;
-
-        for (int j = inicio; j <= fim; j++) {
-            if (array[j].compareTo(pivot) < 0) {
-                i++;
-                String aux = array[i];
-                array[i] = array[j];
-                array[j] = aux;
-            }
-        }
-        i++;
-        String aux = array[i];
-        array[i] = array[fim];
-        array[fim] = aux;
-
-        return i;
-    } 
+ import java.util.ArrayList;
+ 
+ public class laboratorioDeEstudo {
+ 
+     public static void main(String[] args) {
+ 
+         ArrayList<String> list = new ArrayList<>();
+         list.add("Maça");
+         list.add("Laranja");
+         list.add("Carambola");
+         list.add("Jabuticaba");
+         list.add("Abacaxi");
+         list.add("Melancia");
+ 
+         quickSort(list, 0, list.size() - 1);
+ 
+         for (String s : list) {
+             System.out.print(s + " ");
+         }
+     }
+ 
+     private static void quickSort(ArrayList<String> list, int inicio, int fim) {
+         if (fim <= inicio) return;
+ 
+         int ultimo = parteLista(list, inicio, fim);
+         quickSort(list, inicio, ultimo - 1);
+         quickSort(list, ultimo + 1, fim);
+     }
+ 
+     private static int parteLista(ArrayList<String> list, int inicio, int fim) {
+         String ultimo = list.get(fim);
+         int i = inicio - 1;
+ 
+         for (int j = inicio; j <= fim; j++) {
+             if (list.get(j).compareTo(ultimo) < 0) {
+                 i++;
+                 String aux = list.get(i);
+                 list.set(i, list.get(j));
+                 list.set(j, aux);
+             }
+         }
+         i++;
+         String aux = list.get(i);
+         list.set(i, list.get(fim));
+         list.set(fim, aux);
+ 
+         return i;
+     }
  }
-
+ 
